@@ -12,6 +12,13 @@ public class Main {
         forEachCommand.execute();
     }
 
+    public static void forEach2(List<SalesSummaryRow> list,
+                               SetSalesSummaryRowCommand command) {
+        ForEach2Command forEachCommand =
+            new ForEach2Command(list, command);
+        forEachCommand.execute();
+    }
+
     public static void forEachInteger(List<Integer> list,
                                       SetIntegerCommand command) {
         ForEachIntegerCommand forEachCommand =
