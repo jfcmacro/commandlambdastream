@@ -69,9 +69,10 @@ public class Main {
         reduceDouble(List<SalesSummaryRow> list,
                      GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
                      double initial) {
-        Reduce2Command reduceCommand = new Reduce2Command(list,
-                                                          doubleDoubleSalesSummaryRowCommand,
-                                                          initial);
+        ReduceDoubleCommand reduceCommand =
+            new ReduceDoubleCommand(list,
+                                    doubleDoubleSalesSummaryRowCommand,
+                                    initial);
         reduceCommand.execute();
         return reduceCommand.getDouble();
     }
