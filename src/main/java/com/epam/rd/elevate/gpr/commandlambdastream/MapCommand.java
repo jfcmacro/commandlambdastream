@@ -3,31 +3,28 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MapCommand implements GetListDoubleSetListSalesSummaryRowCommand {
-    private List<SalesSummaryRow> salesSummaryRows;
-    private List<Double> returnListDouble;
+public class MapCommand
+    implements GetListDoubleCommand {
+    private List<SalesSummaryRow> listSalesSummaryRow;
+    private List<Double> listDouble;
     private GetDoubleSetSalesSummaryRowCommand doubleSalesSummaryRowCommand;
 
-    public MapCommand(GetDoubleSetSalesSummaryRowCommand
-                      booleanSalesSummaryRowCommand) {
+    public MapCommand(List<SalesSummaryRow> listSalesSummaryRow,
+                      GetDoubleSetSalesSummaryRowCommand booleanSalesSummaryRowCommand) {
+        this.listSalesSummaryRow = listSalesSummaryRow;
         this.doubleSalesSummaryRowCommand = doubleSalesSummaryRowCommand;
-        this.returnListDouble = null;
-    }
-
-    public void setSalesSummaryRows(List<SalesSummaryRow> salesSummaryRows) {
-        this.salesSummaryRows = salesSummaryRows;
     }
 
     public List<Double> getListDouble() {
-        return returnListDouble;
+        return listDouble;
     }
 
     public void execute() {
-        returnListDouble = new ArrayList<Double>();
-        for (SalesSummaryRow salesSummaryRow: salesSummaryRows) {
+        listDouble = new ArrayList<Double>();
+        for (SalesSummaryRow salesSummaryRow: listSalesSummaryRow) {
             doubleSalesSummaryRowCommand.setSalesSummaryRow(salesSummaryRow);
             doubleSalesSummaryRowCommand.execute();
-            returnListDouble.add(doubleSalesSummaryRowCommand.getDouble());
+            listDouble.add(doubleSalesSummaryRowCommand.getDouble());
         }
     }
 }

@@ -4,31 +4,27 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class MapListSalesSummaryRowIntegerCommand
-    implements GetListIntegerSetListSalesSummaryRowCommand {
-    private List<SalesSummaryRow> salesSummaryRows;
-    private List<Integer> returnListInteger;
+    implements GetListIntegerCommand {
+    private List<SalesSummaryRow> listSalesSummaryRow;
+    private List<Integer> listInteger;
     private GetIntegerSetSalesSummaryRowCommand integerSalesSummaryRowCommand;
 
-    public MapListSalesSummaryRowIntegerCommand(GetIntegerSetSalesSummaryRowCommand
-                      integerSalesSummaryRowCommand) {
+    public MapListSalesSummaryRowIntegerCommand(List<SalesSummaryRow> listSalesSummaryRow,
+                       GetIntegerSetSalesSummaryRowCommand integerSalesSummaryRowCommand) {
+        this.listSalesSummaryRow = listSalesSummaryRow;
         this.integerSalesSummaryRowCommand = integerSalesSummaryRowCommand;
-        this.returnListInteger = null;
-    }
-
-    public void setSalesSummaryRows(List<SalesSummaryRow> salesSummaryRows) {
-        this.salesSummaryRows = salesSummaryRows;
     }
 
     public List<Integer> getListInteger() {
-        return returnListInteger;
+        return listInteger;
     }
 
     public void execute() {
-        returnListInteger = new ArrayList<Integer>();
-        for (SalesSummaryRow salesSummaryRow: salesSummaryRows) {
+        listInteger = new ArrayList<Integer>();
+        for (SalesSummaryRow salesSummaryRow: listSalesSummaryRow) {
             integerSalesSummaryRowCommand.setSalesSummaryRow(salesSummaryRow);
             integerSalesSummaryRowCommand.execute();
-            returnListInteger.add(integerSalesSummaryRowCommand.getInteger());
+            listInteger.add(integerSalesSummaryRowCommand.getInteger());
         }
     }
 }

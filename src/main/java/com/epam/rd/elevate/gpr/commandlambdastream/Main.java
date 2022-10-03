@@ -38,8 +38,8 @@ public class Main {
         mapInteger(List<SalesSummaryRow> list,
                    GetIntegerSetSalesSummaryRowCommand transform) {
         MapListSalesSummaryRowIntegerCommand mapCommand =
-            new MapListSalesSummaryRowIntegerCommand(transform);
-        mapCommand.setSalesSummaryRows(list);
+            new MapListSalesSummaryRowIntegerCommand(list,
+                                                     transform);
         mapCommand.execute();
         return mapCommand.getListInteger();
     }
@@ -48,8 +48,8 @@ public class Main {
         mapDouble(List<SalesSummaryRow> list,
                   GetDoubleSetSalesSummaryRowCommand transform) {
         MapListSalesSummaryRowDoubleCommand mapCommand =
-            new MapListSalesSummaryRowDoubleCommand(transform);
-        mapCommand.setSalesSummaryRows(list);
+            new MapListSalesSummaryRowDoubleCommand(list,
+                                                    transform);
         mapCommand.execute();
         return mapCommand.getListDouble();
     }
