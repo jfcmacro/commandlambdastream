@@ -2,7 +2,7 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 
 import java.util.List;
 
-public class GetFinalUnits
+public class GetInitialUnitsCommand
     implements GetIntegerSetSalesSummaryRowCommand {
     private SalesSummaryRow salesSummaryRow;
     private int value;
@@ -16,6 +16,7 @@ public class GetFinalUnits
     }
 
     public void execute() {
-        value = salesSummaryRow.finalUnits();
+        value = salesSummaryRow.getInitialUnits();
     }
+
 }

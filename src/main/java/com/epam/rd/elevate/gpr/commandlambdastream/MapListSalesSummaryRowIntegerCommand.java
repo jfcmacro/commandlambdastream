@@ -10,7 +10,7 @@ public class MapListSalesSummaryRowIntegerCommand
     private GetIntegerSetSalesSummaryRowCommand integerSalesSummaryRowCommand;
 
     public MapListSalesSummaryRowIntegerCommand(List<SalesSummaryRow> listSalesSummaryRow,
-                       GetIntegerSetSalesSummaryRowCommand integerSalesSummaryRowCommand) {
+                                                GetIntegerSetSalesSummaryRowCommand integerSalesSummaryRowCommand) {
         this.listSalesSummaryRow = listSalesSummaryRow;
         this.integerSalesSummaryRowCommand = integerSalesSummaryRowCommand;
     }

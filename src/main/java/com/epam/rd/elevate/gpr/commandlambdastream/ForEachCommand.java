@@ -8,7 +8,7 @@ public class ForEachCommand {
     private SetSalesSummaryRowCommand salesSummaryRowCommand;
 
     public ForEachCommand(List<SalesSummaryRow> listSalesSummaryRow,
-                           SetSalesSummaryRowCommand salesSummaryRowCommand) {
+                          SetSalesSummaryRowCommand salesSummaryRowCommand) {
         this.listSalesSummaryRow = listSalesSummaryRow;
         this.salesSummaryRowCommand = salesSummaryRowCommand;
     }

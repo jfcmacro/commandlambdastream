@@ -9,7 +9,7 @@ public class FilterCommand implements GetListSalesSummaryRowCommand {
     private GetBooleanSetSalesSummaryRowCommand booleanSalesSummaryRowCommand;
 
     public FilterCommand(List<SalesSummaryRow> listSalesSummaryRow,
-                          GetBooleanSetSalesSummaryRowCommand booleanSalesSummaryRowCommand) {
+                         GetBooleanSetSalesSummaryRowCommand booleanSalesSummaryRowCommand) {
         this.listSalesSummaryRow = listSalesSummaryRow;
         this.booleanSalesSummaryRowCommand = booleanSalesSummaryRowCommand;
     }

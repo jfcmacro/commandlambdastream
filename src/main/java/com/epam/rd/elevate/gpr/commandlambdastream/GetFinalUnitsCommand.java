@@ -2,20 +2,20 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 
 import java.util.List;
 
-public class GetProfit
-    implements GetDoubleSetSalesSummaryRowCommand {
+public class GetFinalUnitsCommand
+    implements GetIntegerSetSalesSummaryRowCommand {
     private SalesSummaryRow salesSummaryRow;
-    private double value;
+    private int value;
 
     public void setSalesSummaryRow(SalesSummaryRow salesSummaryRow) {
         this.salesSummaryRow = salesSummaryRow;
     }
 
-    public double getDouble() {
+    public int getInteger() {
         return value;
     }
 
     public void execute() {
-        value = salesSummaryRow.profit();
+        value = salesSummaryRow.finalUnits();
     }
 }

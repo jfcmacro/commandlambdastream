@@ -54,17 +54,6 @@ public class Main {
         return mapCommand.getListDouble();
     }
 
-    // public static Double
-    //     reduceDouble(List<SalesSummaryRow> list,
-    //                  GetDoubleSetSalesSummaryRowCommand doubleSalesSummaryRowCommand,
-    //                  double initial) {
-    //     ReduceCommand reduceCommand = new ReduceCommand(doubleSalesSummaryRowCommand,
-    //                                                     initial);
-    //     reduceCommand.setSalesSummaryRows(list);
-    //     reduceCommand.execute();
-    //     return reduceCommand.getDouble();
-    // }
-
     public static Double
         reduceDouble(List<SalesSummaryRow> list,
                      GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
@@ -105,11 +94,11 @@ public class Main {
 
         System.out.println("\nStarted units from West Sales Summary");
         printListInteger(mapInteger(filter(dbSales, new PredicateWestCommand()),
-                                    new GetInitialUnits()));
+                                    new GetInitialUnitsCommand()));
 
         System.out.println("\nFinals units from East Sales Summary");
         printListInteger(mapInteger(filter(dbSales, new PredicateEastCommand()),
-                                    new GetFinalUnits()));
+                                    new GetFinalUnitsCommand()));
 
         System.out.println("\nList of profits over 30 percent over the sales' cost.");
         printListDouble(mapDouble(filter(dbSales,
@@ -119,6 +108,5 @@ public class Main {
         System.out.println("Profit: " + reduceDouble(dbSales,
                                                      new GetSumProfitCommand(),
                                                      0.0));
-
     }
 }
