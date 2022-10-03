@@ -3,20 +3,18 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ForEachIntegerCommand implements SetListIntegerCommand {
-    private List<Integer> listIntegers;
+public class ForEachIntegerCommand {
+    private List<Integer> listInteger;
     private SetIntegerCommand setIntegerCommand;
 
-    public ForEachIntegerCommand(SetIntegerCommand setIntegerCommand) {
+    public ForEachIntegerCommand(List<Integer> listInteger,
+                                 SetIntegerCommand setIntegerCommand) {
+        this.listInteger = listInteger;
         this.setIntegerCommand = setIntegerCommand;
     }
 
-    public void setIntegers(List<Integer> listIntegers) {
-        this.listIntegers = listIntegers;
-    }
-
     public void execute() {
-        for (Integer integer: listIntegers) {
+        for (Integer integer: listInteger) {
             setIntegerCommand.setInteger(integer);
             setIntegerCommand.execute();
         }

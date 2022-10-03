@@ -7,31 +7,21 @@ public class Main {
     public static void forEach(List<SalesSummaryRow> list,
                                SetSalesSummaryRowCommand command) {
         ForEachCommand forEachCommand =
-            new ForEachCommand(command);
-        forEachCommand.setSalesSummaryRows(list);
-        forEachCommand.execute();
-    }
-
-    public static void forEach2(List<SalesSummaryRow> list,
-                               SetSalesSummaryRowCommand command) {
-        ForEach2Command forEachCommand =
-            new ForEach2Command(list, command);
+            new ForEachCommand(list, command);
         forEachCommand.execute();
     }
 
     public static void forEachInteger(List<Integer> list,
                                       SetIntegerCommand command) {
         ForEachIntegerCommand forEachCommand =
-            new ForEachIntegerCommand(command);
-        forEachCommand.setIntegers(list);
+            new ForEachIntegerCommand(list, command);
         forEachCommand.execute();
     }
 
     public static void forEachDouble(List<Double> list,
                                      SetDoubleCommand command) {
         ForEachDoubleCommand forEachCommand =
-            new ForEachDoubleCommand(command);
-        forEachCommand.setDoubles(list);
+            new ForEachDoubleCommand(list, command);
         forEachCommand.execute();
     }
 
