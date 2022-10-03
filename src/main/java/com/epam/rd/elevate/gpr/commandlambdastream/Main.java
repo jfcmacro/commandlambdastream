@@ -28,8 +28,8 @@ public class Main {
     public static List<SalesSummaryRow>
         filter(List<SalesSummaryRow> list,
                GetBooleanSetSalesSummaryRowCommand predicate) {
-        FilterCommand filterCommand = new FilterCommand(predicate);
-        filterCommand.setSalesSummaryRows(list);
+        FilterCommand filterCommand = new FilterCommand(list,
+                                                        predicate);
         filterCommand.execute();
         return filterCommand.getListSalesSummaryRows();
     }
