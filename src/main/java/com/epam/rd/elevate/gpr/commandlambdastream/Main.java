@@ -54,13 +54,24 @@ public class Main {
         return mapCommand.getListDouble();
     }
 
+    // public static Double
+    //     reduceDouble(List<SalesSummaryRow> list,
+    //                  GetDoubleSetSalesSummaryRowCommand doubleSalesSummaryRowCommand,
+    //                  double initial) {
+    //     ReduceCommand reduceCommand = new ReduceCommand(doubleSalesSummaryRowCommand,
+    //                                                     initial);
+    //     reduceCommand.setSalesSummaryRows(list);
+    //     reduceCommand.execute();
+    //     return reduceCommand.getDouble();
+    // }
+
     public static Double
         reduceDouble(List<SalesSummaryRow> list,
-                     GetDoubleSetSalesSummaryRowCommand doubleSalesSummaryRowCommand,
+                     GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
                      double initial) {
-        ReduceCommand reduceCommand = new ReduceCommand(doubleSalesSummaryRowCommand,
-                                                        initial);
-        reduceCommand.setSalesSummaryRows(list);
+        Reduce2Command reduceCommand = new Reduce2Command(list,
+                                                          doubleDoubleSalesSummaryRowCommand,
+                                                          initial);
         reduceCommand.execute();
         return reduceCommand.getDouble();
     }
@@ -102,10 +113,10 @@ public class Main {
         System.out.println("\nList of profits over 30 percent over the sales' cost.");
         printListDouble(mapDouble(filter(dbSales,
                                          new PredicatePercentSaleOverCostCommand(THIRTEN_PERCENT)),
-                                  new GetProfit()));
+                                  new GetProfitCommand()));
 
         System.out.println("Profit: " + reduceDouble(dbSales,
-                                                     new GetProfit(),
+                                                     new GetSumProfitCommand(),
                                                      0.0));
 
     }

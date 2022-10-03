@@ -4,13 +4,13 @@ import java.util.List;
 
 public class PrintDoubleCommand
     implements SetDoubleCommand {
-    private Double value;
+    private double value;
 
     public void execute() {
         System.out.println(value);
     }
 
-    public void setDouble(Double value) {
+    public void setDouble(double value) {
         this.value = value;
     }
 }
