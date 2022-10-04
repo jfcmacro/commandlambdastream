@@ -14,8 +14,8 @@ public class Main {
     public static <T> List<T>
         filter(List<T> list,
                SetCommandTR<T,Boolean> predicate) {
-        FilterCommandTR<T> filterCommand = new FilterCommandTR<T>(list,
-                                                                  predicate);
+        FilterCommand<T> filterCommand = new FilterCommand<T>(list,
+                                                              predicate);
         return filterCommand.execute();
     }
 
