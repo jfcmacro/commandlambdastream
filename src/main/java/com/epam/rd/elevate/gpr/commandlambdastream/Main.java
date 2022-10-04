@@ -89,7 +89,7 @@ public class Main {
         System.out.println("\nNorth Sales Summary");
         printListSalesSummaryRows(filter(dbSales, new PredicateNorthCommand()));
 
-        System.out.println("\nNorth Sales Summary");
+        System.out.println("\nSouth Sales Summary");
         printListSalesSummaryRows(filter(dbSales, new PredicateSouthCommand()));
 
         System.out.println("\nStarted units from West Sales Summary");
