@@ -26,26 +26,6 @@ public class Main {
         return mapCommand.execute();
     }
 
-    // public static List<Integer>
-    //     mapInteger(List<SalesSummaryRow> list,
-    //                GetIntegerSetSalesSummaryRowCommand transform) {
-    //     MapListSalesSummaryRowIntegerCommand mapCommand =
-    //         new MapListSalesSummaryRowIntegerCommand(list,
-    //                                                  transform);
-    //     mapCommand.execute();
-    //     return mapCommand.getListInteger();
-    // }
-
-    // public static List<Double>
-    //     mapDouble(List<SalesSummaryRow> list,
-    //               GetDoubleSetSalesSummaryRowCommand transform) {
-    //     MapListSalesSummaryRowDoubleCommand mapCommand =
-    //         new MapListSalesSummaryRowDoubleCommand(list,
-    //                                                 transform);
-    //     mapCommand.execute();
-    //     return mapCommand.getListDouble();
-    // }
-
     public static <S,R> R reduce(List<S> list,
                                  BiSetCommandSTR<S,R,R> operator,
                                  R initValue) {
@@ -56,17 +36,17 @@ public class Main {
         return reduceCommand.execute();
     }
 
-    public static Double
-        reduceDouble(List<SalesSummaryRow> list,
-                     GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
-                     double initial) {
-        ReduceDoubleCommand reduceCommand =
-            new ReduceDoubleCommand(list,
-                                    doubleDoubleSalesSummaryRowCommand,
-                                    initial);
-        reduceCommand.execute();
-        return reduceCommand.getDouble();
-    }
+    // public static Double
+    //     reduceDouble(List<SalesSummaryRow> list,
+    //                  GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
+    //                  double initial) {
+    //     ReduceDoubleCommand reduceCommand =
+    //         new ReduceDoubleCommand(list,
+    //                                 doubleDoubleSalesSummaryRowCommand,
+    //                                 initial);
+    //     reduceCommand.execute();
+    //     return reduceCommand.getDouble();
+    // }
 
     public static <T> void printList(List<T> list) {
         forEach(list, new PrintCommand<T,Void>());
@@ -108,8 +88,9 @@ public class Main {
                              new PredicatePercentSaleOverCostCommand(THIRTEN_PERCENT)),
                       new GetProfitCommand()));
 
-        System.out.println("Profit: " + reduceDouble(dbSales,
-                                                     new GetSumProfitCommand(),
-                                                     0.0));
+        System.out.println("Profit: " + reduce(dbSales,
+                                               new GetSumProfitCommand(),
+                                               0.0));
+
     }
 }
