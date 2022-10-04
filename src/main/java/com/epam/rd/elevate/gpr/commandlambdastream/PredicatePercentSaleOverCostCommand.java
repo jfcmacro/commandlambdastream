@@ -3,25 +3,20 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class PredicatePercentSaleOverCostCommand
-    implements GetBooleanSetSalesSummaryRowCommand {
+    implements SetCommandTR<SalesSummaryRow,Boolean> {
     private SalesSummaryRow salesSummaryRow;
-    private boolean predicate = false;
     private double  percent;
 
     public PredicatePercentSaleOverCostCommand(double percent) {
         this.percent = percent;
     }
 
-    public void setSalesSummaryRow(SalesSummaryRow salesSummaryRow) {
+    public void set(SalesSummaryRow salesSummaryRow) {
         this.salesSummaryRow = salesSummaryRow;
     }
 
-    public boolean getBoolean() {
-        return predicate;
-    }
-
-    public void execute() {
-        predicate = (salesSummaryRow.getUnitSalesValue() /
-                     salesSummaryRow.getUnitCosts()) > percent;
+    public Boolean execute() {
+        return (salesSummaryRow.getUnitSalesValue() /
+                salesSummaryRow.getUnitCosts()) > percent;
     }
 }

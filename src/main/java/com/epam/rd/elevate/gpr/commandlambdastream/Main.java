@@ -11,15 +11,6 @@ public class Main {
         forEachCommand.execute();
     }
 
-    public static List<SalesSummaryRow>
-        filter(List<SalesSummaryRow> list,
-               GetBooleanSetSalesSummaryRowCommand predicate) {
-        FilterCommand filterCommand = new FilterCommand(list,
-                                                        predicate);
-        filterCommand.execute();
-        return filterCommand.getListSalesSummaryRows();
-    }
-
     public static <T> List<T>
         filter(List<T> list,
                SetCommandTR<T,Boolean> predicate) {
@@ -89,7 +80,17 @@ public class Main {
         printList(dbSales);
 
         System.out.println("\nNorth Sales Summary");
-        printList(filter(dbSales, new PredicateNorthCommand()));
+        printList(filter(dbSales, new SetCommandTR<SalesSummaryRow,Boolean> () {
+                private SalesSummaryRow salesSummaryRow;
+                @Override
+                public void set(SalesSummaryRow salesSummaryRow) {
+                    this.salesSummaryRow = salesSummaryRow;
+                }
+                @Override
+                public Boolean execute() {
+                    return salesSummaryRow.getRegion() == Region.NORTH;
+                }
+            }));
 
         System.out.println("\nSouth Sales Summary");
         printList(filter(dbSales, new PredicateSouthCommand()));

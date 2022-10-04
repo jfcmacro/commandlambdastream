@@ -2,19 +2,15 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 
 import java.util.List;
 
-public class PredicateSouthCommand implements GetBooleanSetSalesSummaryRowCommand {
+public class PredicateSouthCommand
+    implements SetCommandTR<SalesSummaryRow,Boolean> {
     private SalesSummaryRow salesSummaryRow;
-    private boolean predicate = false;
 
-    public void setSalesSummaryRow(SalesSummaryRow salesSummaryRow) {
+    public void set(SalesSummaryRow salesSummaryRow) {
         this.salesSummaryRow = salesSummaryRow;
     }
 
-    public boolean getBoolean() {
-        return predicate;
-    }
-
-    public void execute() {
-        predicate =  salesSummaryRow.getRegion() == Region.SOUTH;
+    public Boolean execute() {
+        return salesSummaryRow.getRegion() == Region.SOUTH;
     }
 }
