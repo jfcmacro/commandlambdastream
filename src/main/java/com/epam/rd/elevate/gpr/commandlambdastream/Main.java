@@ -4,24 +4,10 @@ import java.util.List;
 
 public class Main {
 
-    public static void forEach(List<SalesSummaryRow> list,
-                               SetSalesSummaryRowCommand command) {
-        ForEachCommand forEachCommand =
-            new ForEachCommand(list, command);
-        forEachCommand.execute();
-    }
-
-    public static void forEachInteger(List<Integer> list,
-                                      SetIntegerCommand command) {
-        ForEachIntegerCommand forEachCommand =
-            new ForEachIntegerCommand(list, command);
-        forEachCommand.execute();
-    }
-
-    public static void forEachDouble(List<Double> list,
-                                     SetDoubleCommand command) {
-        ForEachDoubleCommand forEachCommand =
-            new ForEachDoubleCommand(list, command);
+    public static <T,R> void forEach(List<T> list,
+                                     SetCommandTR<T,R> setCommand) {
+        ForEachTRCommand forEachCommand =
+            new ForEachTRCommand<T,R>(list, setCommand);
         forEachCommand.execute();
     }
 
@@ -32,6 +18,21 @@ public class Main {
                                                         predicate);
         filterCommand.execute();
         return filterCommand.getListSalesSummaryRows();
+    }
+
+    public static <T> List<T>
+        filter(List<T> list,
+               SetCommandTR<T,Boolean> predicate) {
+        FilterCommandTR<T> filterCommand = new FilterCommandTR<T>(list,
+                                                                  predicate);
+        return filterCommand.execute();
+    }
+
+    public static <T,R> List<R> map(List<T> list,
+                                    SetCommandTR<T,R> setCommand) {
+        MapCommandTR<T,R> mapCommand = new MapCommandTR<T,R>(list,
+                                                             setCommand);
+        return mapCommand.execute();
     }
 
     public static List<Integer>
@@ -54,6 +55,16 @@ public class Main {
         return mapCommand.getListDouble();
     }
 
+    public static <S,R> R reduce(List<S> list,
+                                 BiSetCommandSTR<S,R,R> operator,
+                                 R initValue) {
+        ReduceCommandTR<S,R> reduceCommand =
+            new ReduceCommandTR<S,R>(list,
+                                     operator,
+                                     initValue);
+        return reduceCommand.execute();
+    }
+
     public static Double
         reduceDouble(List<SalesSummaryRow> list,
                      GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
@@ -66,16 +77,8 @@ public class Main {
         return reduceCommand.getDouble();
     }
 
-    public static void printListSalesSummaryRows(List<SalesSummaryRow> list) {
-        forEach(list, new PrintSalesSummaryRowCommand());
-    }
-
-    public static void printListInteger(List<Integer> list) {
-        forEachInteger(list, new PrintIntegerCommand());
-    }
-
-    public static void printListDouble(List<Double> list) {
-        forEachDouble(list, new PrintDoubleCommand());
+    public static <T> void printList(List<T> list) {
+        forEach(list, new PrintCommand<T,Void>());
     }
 
     final static double THIRTEN_PERCENT = 0.30;
@@ -84,26 +87,27 @@ public class Main {
         List<SalesSummaryRow> dbSales = DatabaseHelper.getDBSales();
         PrintSalesSummaryRowCommand print = new PrintSalesSummaryRowCommand();
 
-        printListSalesSummaryRows(dbSales);
+        printList(dbSales);
 
         System.out.println("\nNorth Sales Summary");
-        printListSalesSummaryRows(filter(dbSales, new PredicateNorthCommand()));
+        printList(filter(dbSales, new PredicateNorthCommand()));
+        printList(filter(dbSales, new PredicateNorthCommand()));
 
-        System.out.println("\nNorth Sales Summary");
-        printListSalesSummaryRows(filter(dbSales, new PredicateSouthCommand()));
+        System.out.println("\nSouth Sales Summary");
+        printList(filter(dbSales, new PredicateSouthCommand()));
 
         System.out.println("\nStarted units from West Sales Summary");
-        printListInteger(mapInteger(filter(dbSales, new PredicateWestCommand()),
-                                    new GetInitialUnitsCommand()));
+        printList(mapInteger(filter(dbSales, new PredicateWestCommand()),
+                             new GetInitialUnitsCommand()));
 
         System.out.println("\nFinals units from East Sales Summary");
-        printListInteger(mapInteger(filter(dbSales, new PredicateEastCommand()),
-                                    new GetFinalUnitsCommand()));
+        printList(mapInteger(filter(dbSales, new PredicateEastCommand()),
+                             new GetFinalUnitsCommand()));
 
         System.out.println("\nList of profits over 30 percent over the sales' cost.");
-        printListDouble(mapDouble(filter(dbSales,
-                                         new PredicatePercentSaleOverCostCommand(THIRTEN_PERCENT)),
-                                  new GetProfitCommand()));
+        printList(mapDouble(filter(dbSales,
+                                   new PredicatePercentSaleOverCostCommand(THIRTEN_PERCENT)),
+                            new GetProfitCommand()));
 
         System.out.println("Profit: " + reduceDouble(dbSales,
                                                      new GetSumProfitCommand(),
