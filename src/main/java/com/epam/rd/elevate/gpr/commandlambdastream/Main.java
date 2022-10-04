@@ -50,11 +50,9 @@ public class Main {
         System.out.println("\nNorth Sales Summary");
         printList(filter(dbSales, new SetCommand<SalesSummaryRow,Boolean> () {
                 private SalesSummaryRow salesSummaryRow;
-                @Override
                 public void set(SalesSummaryRow salesSummaryRow) {
                     this.salesSummaryRow = salesSummaryRow;
                 }
-                @Override
                 public Boolean execute() {
                     return salesSummaryRow.getRegion() == Region.NORTH;
                 }
