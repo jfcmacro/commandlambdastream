@@ -3,15 +3,15 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ReduceCommandTR<S,R>
-    implements CommandT<R> {
+public class ReduceCommand<S,R>
+    implements Command<R> {
     private List<S> list;
     private R initValue;
-    private BiSetCommandSTR<S,R,R> biSetCommand;
+    private BiSetCommand<S,R,R> biSetCommand;
 
-    public ReduceCommandTR(List<S> list,
-                           BiSetCommandSTR<S,R,R> biSetCommand,
-                           R initValue) {
+    public ReduceCommand(List<S> list,
+                         BiSetCommand<S,R,R> biSetCommand,
+                         R initValue) {
         this.list = list;
         this.biSetCommand = biSetCommand;
         this.initValue = initValue;

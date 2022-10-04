@@ -3,7 +3,7 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class PrintCommand<T,Void>
-    implements SetCommandTR<T,Void> {
+    implements SetCommand<T,Void> {
     private T elem;
 
     public Void execute() {

@@ -3,7 +3,7 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class GetProfitCommand
-    implements SetCommandTR<SalesSummaryRow,Double> {
+    implements SetCommand<SalesSummaryRow,Double> {
     private SalesSummaryRow salesSummaryRow;
 
     public void set(SalesSummaryRow salesSummaryRow) {

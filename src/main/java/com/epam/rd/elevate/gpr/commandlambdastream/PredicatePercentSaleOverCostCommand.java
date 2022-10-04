@@ -3,7 +3,7 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class PredicatePercentSaleOverCostCommand
-    implements SetCommandTR<SalesSummaryRow,Boolean> {
+    implements SetCommand<SalesSummaryRow,Boolean> {
     private SalesSummaryRow salesSummaryRow;
     private double  percent;
 

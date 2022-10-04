@@ -5,7 +5,7 @@ import java.util.List;
 public class Main {
 
     public static <T,R> void forEach(List<T> list,
-                                     SetCommandTR<T,R> setCommand) {
+                                     SetCommand<T,R> setCommand) {
         ForEachCommand forEachCommand =
             new ForEachCommand<T,R>(list, setCommand);
         forEachCommand.execute();
@@ -13,40 +13,28 @@ public class Main {
 
     public static <T> List<T>
         filter(List<T> list,
-               SetCommandTR<T,Boolean> predicate) {
+               SetCommand<T,Boolean> predicate) {
         FilterCommand<T> filterCommand = new FilterCommand<T>(list,
                                                               predicate);
         return filterCommand.execute();
     }
 
     public static <T,R> List<R> map(List<T> list,
-                                    SetCommandTR<T,R> setCommand) {
-        MapCommandTR<T,R> mapCommand = new MapCommandTR<T,R>(list,
-                                                             setCommand);
+                                    SetCommand<T,R> setCommand) {
+        MapCommand<T,R> mapCommand = new MapCommand<T,R>(list,
+                                                         setCommand);
         return mapCommand.execute();
     }
 
     public static <S,R> R reduce(List<S> list,
-                                 BiSetCommandSTR<S,R,R> operator,
+                                 BiSetCommand<S,R,R> operator,
                                  R initValue) {
-        ReduceCommandTR<S,R> reduceCommand =
-            new ReduceCommandTR<S,R>(list,
-                                     operator,
-                                     initValue);
+        ReduceCommand<S,R> reduceCommand =
+            new ReduceCommand<S,R>(list,
+                                   operator,
+                                   initValue);
         return reduceCommand.execute();
     }
-
-    // public static Double
-    //     reduceDouble(List<SalesSummaryRow> list,
-    //                  GetDoubleSetDoubleSetSalesSummaryRowCommand doubleDoubleSalesSummaryRowCommand,
-    //                  double initial) {
-    //     ReduceDoubleCommand reduceCommand =
-    //         new ReduceDoubleCommand(list,
-    //                                 doubleDoubleSalesSummaryRowCommand,
-    //                                 initial);
-    //     reduceCommand.execute();
-    //     return reduceCommand.getDouble();
-    // }
 
     public static <T> void printList(List<T> list) {
         forEach(list, new PrintCommand<T,Void>());
@@ -60,7 +48,7 @@ public class Main {
         printList(dbSales);
 
         System.out.println("\nNorth Sales Summary");
-        printList(filter(dbSales, new SetCommandTR<SalesSummaryRow,Boolean> () {
+        printList(filter(dbSales, new SetCommand<SalesSummaryRow,Boolean> () {
                 private SalesSummaryRow salesSummaryRow;
                 @Override
                 public void set(SalesSummaryRow salesSummaryRow) {

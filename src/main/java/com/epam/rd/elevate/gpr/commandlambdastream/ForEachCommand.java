@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class ForEachCommand<T,R> {
     private List<T> list;
-    private SetCommandTR<T,R> setCommand;
+    private SetCommand<T,R> setCommand;
 
     public ForEachCommand(List<T> list,
-                          SetCommandTR<T,R> setCommand) {
+                          SetCommand<T,R> setCommand) {
         this.list = list;
         this.setCommand = setCommand;
     }

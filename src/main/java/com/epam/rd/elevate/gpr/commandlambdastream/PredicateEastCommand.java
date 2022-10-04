@@ -3,7 +3,7 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class PredicateEastCommand
-    implements SetCommandTR<SalesSummaryRow,Boolean> {
+    implements SetCommand<SalesSummaryRow,Boolean> {
     private SalesSummaryRow salesSummaryRow;
 
     public void set(SalesSummaryRow salesSummaryRow) {
