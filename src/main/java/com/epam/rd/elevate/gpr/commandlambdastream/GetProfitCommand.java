@@ -3,19 +3,14 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class GetProfitCommand
-    implements GetDoubleSetSalesSummaryRowCommand {
+    implements SetCommandTR<SalesSummaryRow,Double> {
     private SalesSummaryRow salesSummaryRow;
-    private double value;
 
-    public void setSalesSummaryRow(SalesSummaryRow salesSummaryRow) {
+    public void set(SalesSummaryRow salesSummaryRow) {
         this.salesSummaryRow = salesSummaryRow;
     }
 
-    public double getDouble() {
-        return value;
-    }
-
-    public void execute() {
-        value = salesSummaryRow.profit();
+    public Double execute() {
+        return salesSummaryRow.profit();
     }
 }

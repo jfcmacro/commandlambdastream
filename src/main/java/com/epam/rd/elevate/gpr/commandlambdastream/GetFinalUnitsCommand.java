@@ -3,19 +3,13 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 
 public class GetFinalUnitsCommand
-    implements GetIntegerSetSalesSummaryRowCommand {
+    implements SetCommandTR<SalesSummaryRow,Integer> {
     private SalesSummaryRow salesSummaryRow;
-    private int value;
 
-    public void setSalesSummaryRow(SalesSummaryRow salesSummaryRow) {
+    public void set(SalesSummaryRow salesSummaryRow) {
         this.salesSummaryRow = salesSummaryRow;
     }
-
-    public int getInteger() {
-        return value;
-    }
-
-    public void execute() {
-        value = salesSummaryRow.finalUnits();
+    public Integer execute() {
+        return salesSummaryRow.finalUnits();
     }
 }

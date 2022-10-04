@@ -26,25 +26,25 @@ public class Main {
         return mapCommand.execute();
     }
 
-    public static List<Integer>
-        mapInteger(List<SalesSummaryRow> list,
-                   GetIntegerSetSalesSummaryRowCommand transform) {
-        MapListSalesSummaryRowIntegerCommand mapCommand =
-            new MapListSalesSummaryRowIntegerCommand(list,
-                                                     transform);
-        mapCommand.execute();
-        return mapCommand.getListInteger();
-    }
+    // public static List<Integer>
+    //     mapInteger(List<SalesSummaryRow> list,
+    //                GetIntegerSetSalesSummaryRowCommand transform) {
+    //     MapListSalesSummaryRowIntegerCommand mapCommand =
+    //         new MapListSalesSummaryRowIntegerCommand(list,
+    //                                                  transform);
+    //     mapCommand.execute();
+    //     return mapCommand.getListInteger();
+    // }
 
-    public static List<Double>
-        mapDouble(List<SalesSummaryRow> list,
-                  GetDoubleSetSalesSummaryRowCommand transform) {
-        MapListSalesSummaryRowDoubleCommand mapCommand =
-            new MapListSalesSummaryRowDoubleCommand(list,
-                                                    transform);
-        mapCommand.execute();
-        return mapCommand.getListDouble();
-    }
+    // public static List<Double>
+    //     mapDouble(List<SalesSummaryRow> list,
+    //               GetDoubleSetSalesSummaryRowCommand transform) {
+    //     MapListSalesSummaryRowDoubleCommand mapCommand =
+    //         new MapListSalesSummaryRowDoubleCommand(list,
+    //                                                 transform);
+    //     mapCommand.execute();
+    //     return mapCommand.getListDouble();
+    // }
 
     public static <S,R> R reduce(List<S> list,
                                  BiSetCommandSTR<S,R,R> operator,
@@ -96,17 +96,17 @@ public class Main {
         printList(filter(dbSales, new PredicateSouthCommand()));
 
         System.out.println("\nStarted units from West Sales Summary");
-        printList(mapInteger(filter(dbSales, new PredicateWestCommand()),
-                             new GetInitialUnitsCommand()));
+        printList(map(filter(dbSales, new PredicateWestCommand()),
+                      new GetInitialUnitsCommand()));
 
         System.out.println("\nFinals units from East Sales Summary");
-        printList(mapInteger(filter(dbSales, new PredicateEastCommand()),
-                             new GetFinalUnitsCommand()));
+        printList(map(filter(dbSales, new PredicateEastCommand()),
+                      new GetFinalUnitsCommand()));
 
         System.out.println("\nList of profits over 30 percent over the sales' cost.");
-        printList(mapDouble(filter(dbSales,
-                                   new PredicatePercentSaleOverCostCommand(THIRTEN_PERCENT)),
-                            new GetProfitCommand()));
+        printList(map(filter(dbSales,
+                             new PredicatePercentSaleOverCostCommand(THIRTEN_PERCENT)),
+                      new GetProfitCommand()));
 
         System.out.println("Profit: " + reduceDouble(dbSales,
                                                      new GetSumProfitCommand(),
