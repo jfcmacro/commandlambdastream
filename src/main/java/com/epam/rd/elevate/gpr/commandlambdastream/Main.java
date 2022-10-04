@@ -6,8 +6,8 @@ public class Main {
 
     public static <T,R> void forEach(List<T> list,
                                      SetCommandTR<T,R> setCommand) {
-        ForEachTRCommand forEachCommand =
-            new ForEachTRCommand<T,R>(list, setCommand);
+        ForEachCommand forEachCommand =
+            new ForEachCommand<T,R>(list, setCommand);
         forEachCommand.execute();
     }
 
@@ -85,12 +85,10 @@ public class Main {
 
     public static void main(String[] args) {
         List<SalesSummaryRow> dbSales = DatabaseHelper.getDBSales();
-        PrintSalesSummaryRowCommand print = new PrintSalesSummaryRowCommand();
 
         printList(dbSales);
 
         System.out.println("\nNorth Sales Summary");
-        printList(filter(dbSales, new PredicateNorthCommand()));
         printList(filter(dbSales, new PredicateNorthCommand()));
 
         System.out.println("\nSouth Sales Summary");

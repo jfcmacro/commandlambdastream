@@ -3,20 +3,22 @@ package com.epam.rd.elevate.gpr.commandlambdastream;
 import java.util.List;
 import java.util.ArrayList;
 
-public class ForEachCommand {
-    private List<SalesSummaryRow> listSalesSummaryRow;
-    private SetSalesSummaryRowCommand salesSummaryRowCommand;
+public class ForEachCommand<T,R> {
+    private List<T> list;
+    private SetCommandTR<T,R> setCommand;
 
-    public ForEachCommand(List<SalesSummaryRow> listSalesSummaryRow,
-                          SetSalesSummaryRowCommand salesSummaryRowCommand) {
-        this.listSalesSummaryRow = listSalesSummaryRow;
-        this.salesSummaryRowCommand = salesSummaryRowCommand;
+    public ForEachCommand(List<T> list,
+                          SetCommandTR<T,R> setCommand) {
+        this.list = list;
+        this.setCommand = setCommand;
     }
 
-    public void execute() {
-        for (SalesSummaryRow saleSummaryRow: listSalesSummaryRow) {
-            salesSummaryRowCommand.setSalesSummaryRow(saleSummaryRow);
-            salesSummaryRowCommand.execute();
+    public R execute() {
+        R retValue = null;
+        for (T elem: list) {
+            setCommand.set(elem);
+            retValue = setCommand.execute();
         }
+        return retValue;
     }
 }
