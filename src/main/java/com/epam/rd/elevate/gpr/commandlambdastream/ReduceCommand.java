@@ -20,8 +20,8 @@ public class ReduceCommand<S,R>
     public R execute() {
         R retValue = initValue;
         for (S item: list) {
-            biSetCommand.set(item);
-            biSetCommand.set2(retValue);
+            biSetCommand.set(item,retValue);
+            // biSetCommand.set2(retValue);
             retValue = biSetCommand.execute();
         }
         return retValue;

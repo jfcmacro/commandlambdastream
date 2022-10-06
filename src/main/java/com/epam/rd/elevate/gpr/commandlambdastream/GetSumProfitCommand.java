@@ -7,12 +7,9 @@ public class GetSumProfitCommand
     private SalesSummaryRow salesSummaryRow;
     private Double value;
 
-    public void set(SalesSummaryRow salesSummaryRow) {
+    public void set(SalesSummaryRow salesSummaryRow, Double value) {
         this.salesSummaryRow = salesSummaryRow;
-    }
-
-    public void set2(Double value) {
-        this.value = value;
+	this.value = value;
     }
 
     public Double execute() {
