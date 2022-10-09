@@ -9,51 +9,6 @@ import java.util.function.Predicate;
 
 public class Main {
 
-    public static <T> void forEach(List<T> list,
-                                   Consumer<? super T> action) {
-        List<T> filteredList = new ArrayList<>();
-        for (T item : list) {
-            action.accept(item);
-        }
-    }
-
-    public static <T> List<T> filter(List<T> list,
-                                     Predicate<? super T> predicate) {
-        List<T> filteredList = new ArrayList<>();
-        for (T item : list) {
-            if (predicate.test(item)) {
-                filteredList.add(item);
-            }
-        }
-
-        return filteredList;
-    }
-
-    public static <T,R> List<R> map(List<T> list,
-                                    Function<? super T, R> mapper) {
-        List<R> mappedList = new ArrayList<>();
-        for (T item : list) {
-            mappedList.add(mapper.apply(item));
-        }
-
-        return mappedList;
-    }
-
-    public static <T,R> R reduce(List<T> list,
-                                 BiFunction<? super T,R,R> func,
-                                 R initial) {
-        R result = initial;
-        for (T item : list) {
-            result = func.apply(item,result);
-        }
-        return result;
-    }
-
-    public static Boolean
-        predicateRegion(SalesSummaryRow salesSummaryRow, Region r) {
-        return salesSummaryRow.getRegion() == r;
-    }
-
     public static Predicate<SalesSummaryRow>
         createPredicateRegion(Region region) {
         return (s -> s.getRegion() == region);
@@ -64,8 +19,8 @@ public class Main {
         return s -> (s.getUnitSalesValue() / s.getUnitCosts()) > percent;
     }
 
-    public static Double sumProfit(SalesSummaryRow s,
-                                   Double value) {
+    public static Double sumProfit(Double value,
+                                   SalesSummaryRow s) {
         return s.profit() + value;
     }
 
@@ -74,36 +29,40 @@ public class Main {
     public static void main(String[] args) {
         List<SalesSummaryRow> dbSales = DatabaseHelper.getDBSales();
 
-        forEach(dbSales,System.out::println);
+        dbSales.stream().
+            forEach(System.out::println);
 
         System.out.println("\nNorth Sales Summary");
-        forEach(filter(dbSales, createPredicateRegion(Region.NORTH)),
-                System.out::println);
+        dbSales.stream()
+            .filter(createPredicateRegion(Region.NORTH))
+            .forEach(System.out::println);
 
         System.out.println("\nSouth Sales Summary");
-        forEach(filter(dbSales, createPredicateRegion(Region.SOUTH)),
-                System.out::println);
+        dbSales.stream()
+            .filter(createPredicateRegion(Region.SOUTH))
+            .forEach(System.out::println);
 
         System.out.println("\nStarted units from West Sales Summary");
-        forEach(map(filter(dbSales,
-                           createPredicateRegion(Region.WEST)),
-                    SalesSummaryRow::getInitialUnits),
-                System.out::println);
+        dbSales.stream()
+            .filter(createPredicateRegion(Region.WEST))
+            .map(SalesSummaryRow::getInitialUnits)
+            .forEach(System.out::println);
 
         System.out.println("\nFinals units from East Sales Summary");
-        forEach(map(filter(dbSales,
-                           createPredicateRegion(Region.EAST)),
-                    SalesSummaryRow::finalUnits),
-                System.out::println);
+        dbSales.stream()
+            .filter(createPredicateRegion(Region.EAST))
+            .map(SalesSummaryRow::finalUnits)
+            .forEach(System.out::println);
 
         System.out.println("\nList of profits over 30 percent over the sales' cost.");
-        forEach(map(filter(dbSales,
-                           createPredicateSalesCost(THIRTEN_PERCENT)),
-                    SalesSummaryRow::profit),
-                System.out::println);
+        dbSales.stream()
+            .filter(createPredicateSalesCost(THIRTEN_PERCENT))
+            .map(SalesSummaryRow::profit)
+            .forEach(System.out::println);
 
-        System.out.println("Profit: " + reduce(dbSales,
-                                               Main::sumProfit,
-                                               0.0));
+        System.out.println("Profit: " + dbSales.stream().
+                           reduce(0.0,
+                                  Main::sumProfit,
+                                  Double::sum));
     }
 }
