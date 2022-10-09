@@ -64,6 +64,11 @@ public class Main {
         return s -> (s.getUnitSalesValue() / s.getUnitCosts()) > percent;
     }
 
+    public static Double sumProfit(SalesSummaryRow s,
+                                   Double value) {
+        return s.profit() + value;
+    }
+
     final static double THIRTEN_PERCENT = 0.30;
 
     public static void main(String[] args) {
@@ -77,7 +82,7 @@ public class Main {
 
         System.out.println("\nSouth Sales Summary");
         forEach(filter(dbSales, createPredicateRegion(Region.SOUTH)),
-                s -> System.out.println(s));
+                System.out::println);
 
         System.out.println("\nStarted units from West Sales Summary");
         forEach(map(filter(dbSales,
@@ -98,7 +103,7 @@ public class Main {
                 System.out::println);
 
         System.out.println("Profit: " + reduce(dbSales,
-                                               (s,r) -> s.profit() + r,
+                                               Main::sumProfit,
                                                0.0));
     }
 }
