@@ -49,15 +49,18 @@ public class Main {
         return result;
     }
 
-    public static Boolean predicateRegion(SalesSummaryRow salesSummaryRow, Region r2) {
-        return salesSummaryRow.getRegion() == r2;
+    public static Boolean
+        predicateRegion(SalesSummaryRow salesSummaryRow, Region r) {
+        return salesSummaryRow.getRegion() == r;
     }
 
-    public static Predicate<SalesSummaryRow> createPredicateRegion(Region region) {
+    public static Predicate<SalesSummaryRow>
+        createPredicateRegion(Region region) {
         return (s -> s.getRegion() == region);
     }
 
-    public static Predicate<SalesSummaryRow> createPredicateSalesCost(Double percent) {
+    public static Predicate<SalesSummaryRow>
+        createPredicateSalesCost(Double percent) {
         return s -> (s.getUnitSalesValue() / s.getUnitCosts()) > percent;
     }
 
