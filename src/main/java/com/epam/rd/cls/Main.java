@@ -1,4 +1,4 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -52,7 +52,7 @@ public class Main {
     final static double THIRTEN_PERCENT = 0.30;
 
     public static void main(String[] args) {
-        List<SalesSummaryRow> dbSales = DatabaseHelper.getDBSales();
+        List<SalesSummaryRow> dbSales = DBHelper.getDBSales();
 
         forEach(dbSales,s -> System.out.println(s));
 
