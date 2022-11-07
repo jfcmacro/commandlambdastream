@@ -1,8 +1,8 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 
-public class GetSumProfitCommand
+public class GetSumProfitCmd
     implements BiSetCommand<SalesSummaryRow,Double,Double> {
     private SalesSummaryRow salesSummaryRow;
     private Double value;

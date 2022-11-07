@@ -1,9 +1,9 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 
-public class GetProfitCommand
-    implements SetCommand<SalesSummaryRow,Double> {
+public class GetProfitCmd
+    implements SetCmd<SalesSummaryRow,Double> {
     private SalesSummaryRow salesSummaryRow;
 
     public void set(SalesSummaryRow salesSummaryRow) {

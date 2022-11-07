@@ -1,14 +1,14 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class FilterCommand<T> implements Command<List<T>> {
+public class FilterCmd<T> implements Command<List<T>> {
     private List<T> list;
-    private SetCommand<T,Boolean> predicate;
+    private SetCmd<T,Boolean> predicate;
 
-    public FilterCommand(List<T> list,
-                         SetCommand<T,Boolean> predicate) {
+    public FilterCmd(List<T> list,
+                     SetCmd<T,Boolean> predicate) {
         this.list = list;
         this.predicate = predicate;
     }

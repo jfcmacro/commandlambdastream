@@ -1,13 +1,13 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 
-public class PredicatePercentSaleOverCostCommand
-    implements SetCommand<SalesSummaryRow,Boolean> {
+public class PredPercSaleOverCostCmd
+    implements SetCmd<SalesSummaryRow,Boolean> {
     private SalesSummaryRow salesSummaryRow;
     private double  percent;
 
-    public PredicatePercentSaleOverCostCommand(double percent) {
+    public PredPercSaleOverCostCmd(double percent) {
         this.percent = percent;
     }
 

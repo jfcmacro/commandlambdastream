@@ -1,9 +1,9 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 
-public class PredicateSouthCommand
-    implements SetCommand<SalesSummaryRow,Boolean> {
+public class PredWestCmd 
+    implements SetCmd<SalesSummaryRow,Boolean> {
     private SalesSummaryRow salesSummaryRow;
 
     public void set(SalesSummaryRow salesSummaryRow) {
@@ -11,6 +11,6 @@ public class PredicateSouthCommand
     }
 
     public Boolean execute() {
-        return salesSummaryRow.getRegion() == Region.SOUTH;
+        return salesSummaryRow.getRegion() == Region.WEST;
     }
 }

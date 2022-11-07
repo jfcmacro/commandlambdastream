@@ -1,9 +1,9 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 
-public class GetFinalUnitsCommand
-    implements SetCommand<SalesSummaryRow,Integer> {
+public class GetFinalUnitsCmd
+    implements SetCmd<SalesSummaryRow,Integer> {
     private SalesSummaryRow salesSummaryRow;
 
     public void set(SalesSummaryRow salesSummaryRow) {
