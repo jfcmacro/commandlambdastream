@@ -1,9 +1,9 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import java.util.List;
 import java.util.ArrayList;
 
-public class DatabaseHelper {
+public class DBHelper {
 
     private static Article article1 = new Article("Article 1",
                                                   "This is the article 1");

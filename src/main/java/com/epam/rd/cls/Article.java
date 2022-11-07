@@ -1,4 +1,4 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 public class Article {
     private String name;
