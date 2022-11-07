@@ -1,4 +1,4 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 public class SalesSummaryRow {
     private Region region;

@@ -1,4 +1,4 @@
-package com.epam.rd.elevate.gpr.commandlambdastream;
+package com.epam.rd.cls;
 
 import static org.junit.Assert.assertTrue;
 
