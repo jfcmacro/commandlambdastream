@@ -27,7 +27,7 @@ public class Main {
     }
 
     public static <S,R> R reduce(List<S> list,
-                                 BiSetCommand<S,R,R> operator,
+                                 BiSetCmd<S,R,R> operator,
                                  R initValue) {
         ReduceCmd<S,R> reduceCmd =
             new ReduceCmd<S,R>(list,

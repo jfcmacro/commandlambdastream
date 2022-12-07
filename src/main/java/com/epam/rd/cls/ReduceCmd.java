@@ -7,10 +7,10 @@ public class ReduceCmd<S,R>
     implements Command<R> {
     private List<S> list;
     private R initValue;
-    private BiSetCommand<S,R,R> biSetCmd;
+    private BiSetCmd<S,R,R> biSetCmd;
 
     public ReduceCmd(List<S> list,
-                     BiSetCommand<S,R,R> biSetCmd,
+                     BiSetCmd<S,R,R> biSetCmd,
                      R initValue) {
         this.list = list;
         this.biSetCmd = biSetCmd;

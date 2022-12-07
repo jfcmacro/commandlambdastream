@@ -3,7 +3,7 @@ package com.epam.rd.cls;
 import java.util.List;
 
 public class GetSumProfitCmd
-    implements BiSetCommand<SalesSummaryRow,Double,Double> {
+    implements BiSetCmd<SalesSummaryRow,Double,Double> {
     private SalesSummaryRow salesSummaryRow;
     private Double value;
 
